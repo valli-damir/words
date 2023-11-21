@@ -1,6 +1,4 @@
 import time
-import array
-
 
 set_letters_array = ["омхр", "рткаук", "арсед", "таубн"]
 
@@ -12,6 +10,7 @@ choice_right_words_array = [
 
 def get_game():
     game_time = time.time()
+    end_game_time = time.time()
     for i in range(0, len(set_letters_array)):
         level_start_time = time.time()
         level = set_letters_array[i]
@@ -28,21 +27,25 @@ def get_game():
                 if right_word == 0:
                     end_time = time.time()
                     print(f"Level-{i + 1} пройден за {round(end_time - level_start_time, 2)} секунд. Поздравляем! ")
+                    end_game_time = time.time()
                     player_input = input(
                         "Выберите продолжить игру командой 'далее' или завершите игру командой 'выход'! ").lower()
                     commands = ["далее", "выход"]
                     while player_input != commands[0]:
                         if player_input in commands:
                             if player_input == commands[1]:
-                                end_game_time = time.time()
                                 print("Игра завершена! ")
                                 print(f"Игра пройдена за {round(end_game_time - game_time, 2)} секунд")
                                 exit()
                         else:
                             print("Не правильно ввели данные!")
-                            player_input = input("Выберите продолжить игру командой 'далее' или завершите игру командой 'выход'! ").lower()
+                            player_input = input(
+                                "Выберите продолжить игру командой 'далее' или "
+                                "завершите игру командой 'выход'! ").lower()
             else:
                 print(f"Слова {user_input.upper()} нет в загаданных")
+    print("Игра завершена! ")
+    print(f"Игра пройдена за {round(end_game_time - game_time, 2)} секунд")
 
 
 if __name__ == "__main__":
