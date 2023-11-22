@@ -35,7 +35,10 @@ def get_game():
                         if player_input in commands:
                             if player_input == commands[1]:
                                 print("Игра завершена! ")
-                                print(f"Игра пройдена за {round(end_game_time - game_time, 2)} секунд")
+                                difference_time = time.time()
+                                print(f"Игра пройдена "
+                                      f"за {round(difference_time - (difference_time - end_game_time) - game_time, 2)} "
+                                      f"секунд")
                                 exit()
                         else:
                             print("Не правильно ввели данные!")
